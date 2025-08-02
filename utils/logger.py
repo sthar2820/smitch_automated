@@ -1,15 +1,20 @@
 import os
 import json
 
-LOG_PATH = os.path.join("logs", "processed_files.json")
+LOG_FILE = "logs/processed_files.json"
 
 def load_processed_log():
-    if os.path.exists(LOG_PATH):
-        with open(LOG_PATH, "r") as f:
-            return json.load(f)
-    return {}
+    if not os.path.exists(LOG_FILE):
+        return {}
 
-def update_log(log_dict):
-    os.makedirs("logs", exist_ok=True)
-    with open(LOG_PATH, "w") as f:
-        json.dump(log_dict, f, indent=2)
+    try:
+        with open(LOG_FILE, "r") as f:
+            return json.load(f)
+    except (json.JSONDecodeError, IOError):
+        # Log file exists but is corrupted or empty → reset
+        return {}
+
+def update_log(new_log):
+    os.makedirs(os.path.dirname(LOG_FILE), exist_ok=True)
+    with open(LOG_FILE, "w") as f:
+        json.dump(new_log, f, indent=4)
