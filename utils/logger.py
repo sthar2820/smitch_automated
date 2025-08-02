@@ -1,8 +1,7 @@
 import os
 import json
 
-LOG_PATH = "logs/processed_files.json"
-os.makedirs(os.path.dirname(LOG_PATH), exist_ok=True)
+LOG_PATH = os.path.join("logs", "processed_files.json")
 
 def load_processed_log():
     if os.path.exists(LOG_PATH):
@@ -10,6 +9,7 @@ def load_processed_log():
             return json.load(f)
     return {}
 
-def update_log(log_data):
+def update_log(log_dict):
+    os.makedirs("logs", exist_ok=True)
     with open(LOG_PATH, "w") as f:
-        json.dump(log_data, f, indent=4)
+        json.dump(log_dict, f, indent=2)
