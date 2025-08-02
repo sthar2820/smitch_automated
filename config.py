@@ -7,8 +7,8 @@ class Config:
     
     # File paths - use environment variables for flexibility
     # These can be SharePoint paths, network drives, or local paths
-    WATCH_PATH = os.getenv('WATCH_PATH', r'C:\Users\sthar\Downloads\SMITCH_2025\SMITCH_2025')
-    OUTPUT_PATH = os.getenv('OUTPUT_PATH', r'C:\Users\sthar\Downloads\smitch_extracted')
+    WATCH_PATH = os.getenv('WATCH_PATH', r'C:\Users\RShrestha\OneDrive - Dura-Shiloh\SMITCH_2025')
+    OUTPUT_PATH = os.getenv('OUTPUT_PATH', r'C:\Users\RShrestha\OneDrive - Dura-Shiloh\smitch_extracted')
     LOG_PATH = os.getenv('LOG_PATH', './logs')
     
     # SharePoint specific settings
