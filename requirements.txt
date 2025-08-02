@@ -1,1 +1,10 @@
 
+# Core libraries
+streamlit>=1.33.0
+openpyxl>=3.1.2
+pandas>=2.2.0
+
+# Optional (if you plan to use any of these in the future)
+# python-docx>=1.0.0
+# numpy>=1.26.0
+# xlrd>=2.0.0      # Needed if you decide to read legacy XLS files
