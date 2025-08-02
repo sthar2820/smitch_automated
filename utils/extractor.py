@@ -1,4 +1,17 @@
 
+import re
+from datetime import datetime
+
+# Optional Streamlit import for UI functionality
+try:
+    import streamlit as st
+except ImportError:
+    # Create a mock st object for command-line usage
+    class MockStreamlit:
+        def error(self, msg): print(f"ERROR: {msg}")
+        def warning(self, msg): print(f"WARNING: {msg}")
+    st = MockStreamlit()
+
 KNOWN_PLANTS = {
     "Bielsko Biala", "Birmingham", "Blatna", "Einbeck", "Forsheda",
     "Olofstrom", "Rotenburg", "Celaya", "Dickson", "Goshen",

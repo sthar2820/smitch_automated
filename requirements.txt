@@ -1,10 +1,23 @@
 
-# Core libraries
-streamlit>=1.33.0
+# SMITCH Server Requirements - Windows Server Deployment
+
+# Core Data Processing
 openpyxl>=3.1.2
 pandas>=2.2.0
 
-# Optional (if you plan to use any of these in the future)
-# python-docx>=1.0.0
-# numpy>=1.26.0
-# xlrd>=2.0.0      # Needed if you decide to read legacy XLS files
+# File System Monitoring
+watchdog>=3.0.0
+
+# Configuration Management
+python-dotenv>=1.0.0
+
+# Windows Service Dependencies
+pywin32>=306  # Required for Windows Service
+
+# HTTP Requests (for health checks)
+requests>=2.31.0
+
+# Production Server Optional Dependencies
+# pyinstaller>=5.13.0  # For standalone executable
+# schedule>=1.2.0       # For scheduled tasks
+# psutil>=5.9.0         # For system monitoring
