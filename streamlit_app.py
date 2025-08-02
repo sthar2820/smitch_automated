@@ -10,7 +10,7 @@ from utils.saver import save_to_excel
 st.title("SMITCH Automated Extractor")
 
 # Step 1: Folder Input
-uploaded_folder = st.text_input("Enter path to centralized folder", value=r""C:\Users\sthar\Downloads\SMITCH_2025"")
+uploaded_folder = st.text_input("Enter path to centralized folder", value=r"C:\Users\sthar\Downloads\SMITCH_2025")
 extracted_folder = "extracted_outputs"
 os.makedirs(extracted_folder, exist_ok=True)
 
