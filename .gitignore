@@ -8,6 +8,20 @@ build/
 develop-eggs/
 dist/
 downloads/
+
+# Unwanted pipeline files (cleanup)
+auto_watcher.py
+debug_test.py
+configure_paths.bat
+docker-compose.yml
+Dockerfile
+run_streamlit.bat
+scheduled_extract.bat
+service_installer.bat
+simple_runner.py
+streamlit_app_simple.py
+DEPLOYMENT_GUIDE.md
+.venv/
 eggs/
 .eggs/
 lib/
