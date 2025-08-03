@@ -281,8 +281,9 @@ echo   3. Monitor logs for any issues
 echo   4. Train team members on usage
 echo.
 echo Support Files:
-echo   - TEAM_HANDOVER.md (Team documentation)
-echo   - SHAREPOINT_SETUP.md (SharePoint guide)
+echo   - documentation\ (Complete documentation)
+echo   - documentation\TEAM_HANDOVER.md (Team guide)
+echo   - documentation\SHAREPOINT_SETUP.md (SharePoint guide)
 echo   - logs\ (Runtime logs and statistics)
 echo.
 pause

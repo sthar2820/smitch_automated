@@ -1,4 +1,4 @@
-# SMITCH Auto-Extractor 
+# SMITCH Auto-Extractor 🚀
 
 **Automatically extracts S.M.I.T.C.H. data from Excel files when they change.**
 
@@ -11,7 +11,7 @@
 
 ## Quick Start
 
-### For Local Use (Your Computer)
+### 🖥️ For Local Use (Your Computer)
 
 ```
 1. Double-click: start_auto_watcher.bat
@@ -19,7 +19,7 @@
 3. Save the file - extraction happens automatically!
 ```
 
-###  For Company Server Deployment
+### 🏢 For Company Server Deployment
 
 ```
 1. Copy all files to server
@@ -31,7 +31,7 @@
 ## File Structure
 
 ```
- Essential Files:
+📁 Essential Files:
 ├── start_auto_watcher.bat    ← Start monitoring (local use)
 ├── server_deploy.bat         ← Deploy to company server
 ├── production_watcher.py     ← Main monitoring program
@@ -41,7 +41,7 @@
 ├── utils/                   ← Data processing modules
 └── logs/                    ← Runtime logs and statistics
 
- Documentation:
+📖 Documentation:
 ├── README.md                ← This file
 ├── SERVER_REQUIREMENTS.md   ← Server installation guide
 ├── SHAREPOINT_SETUP.md      ← SharePoint configuration
@@ -72,7 +72,7 @@
 
 ## Support Files
 
-
+- **Plants Supported**: Birmingham, Blatna, Genk, Komarom, Wolfsburg, Palencia, Setubal, Brugge
 - **Data Categories**: S.M.I.T.C.H. metrics + APW + EBIT data
 - **File Types**: Excel .xlsm and .xlsx files
 

@@ -11,8 +11,8 @@
 
 ### Current Setup
 
-- **Input**: `C:\Users\sthar\Downloads\SMITCH_2025\SMITCH_2025`
-- **Output**: `C:\Users\sthar\Downloads\smitch_extracted`
+- **Input**: `C:\Users\RShrestha\OneDrive - Dura-Shiloh\SMITCH_2025`
+- **Output**: `C:\Users\RShrestha\OneDrive - Dura-Shiloh\smitch_extracted`
 - **Logs**: `./logs/`
 
 ### How to Use
