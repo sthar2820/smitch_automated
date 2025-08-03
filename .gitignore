@@ -8,6 +8,14 @@ build/
 develop-eggs/
 dist/
 downloads/
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.cache
+nosetests.xml
+coverage.xml
+pytest.xml
 
 # Unwanted pipeline files (cleanup)
 auto_watcher.py
@@ -26,6 +34,10 @@ DEPLOYMENT_GUIDE.md
 check_config.py
 test_date_formats.py
 start_watcher_persistent.bat
+test_*.py
+*_test.py
+debug_*.py
+temp_*.py
 
 # Development/IDE files
 .venv/
@@ -50,26 +62,47 @@ ENV/
 env.bak/
 venv.bak/
 
-# Logs
+# Logs and runtime data
 logs/*.log
 logs/*.json
+logs/processed_files.json
+logs/health_check.json
+logs/watcher_stats.json
 *.log
 
-# IDE
+# Output files (extracted data)
+extracted_outputs/
+*_extracted.xlsx
+*_extracted.xlsm
+smitch_extracted/
+
+# Temporary Excel files
+~$*.xlsx
+~$*.xlsm
+*.tmp
+
+# IDE and Editor files
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
+.sublime-*
 
-# OS
+# OS generated files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
 
-# Output files
-extracted_outputs/
-*.xlsx
-*.xlsm
+# Windows Service Installation Files
+*.exe
+*.msi
 
-# Docker
-.dockerignore
+# Backup files
+*.bak
+*.orig
+*~
