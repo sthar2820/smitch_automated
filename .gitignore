@@ -21,6 +21,13 @@ service_installer.bat
 simple_runner.py
 streamlit_app_simple.py
 DEPLOYMENT_GUIDE.md
+
+# Temporary and test files
+check_config.py
+test_date_formats.py
+start_watcher_persistent.bat
+
+# Development/IDE files
 .venv/
 eggs/
 .eggs/

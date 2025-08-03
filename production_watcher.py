@@ -100,7 +100,28 @@ class ProductionSMITCHHandler(FileSystemEventHandler):
             current_time = time.time()
             if current_time - self.last_run > self.cooldown:
                 file_name = os.path.basename(event.src_path)
-                file_size = os.path.getsize(event.src_path) / (1024 * 1024)  # MB
+                
+                # Wait a moment for file operations to complete
+                time.sleep(0.5)
+                
+                # Safely get file size with error handling
+                try:
+                    if not os.path.exists(event.src_path):
+                        logger.warning(f"File no longer exists, skipping: {file_name}")
+                        return
+                    
+                    # Check if file is still being written to (try to open for writing)
+                    try:
+                        with open(event.src_path, 'r+b'):
+                            pass
+                    except PermissionError:
+                        logger.info(f"File is still being written, skipping: {file_name}")
+                        return
+                    
+                    file_size = os.path.getsize(event.src_path) / (1024 * 1024)  # MB
+                except (FileNotFoundError, OSError, PermissionError) as e:
+                    logger.warning(f"Cannot access file {file_name}: {e}")
+                    return
                 
                 logger.info(f"File changed: {file_name} ({file_size:.2f}MB)")
                 

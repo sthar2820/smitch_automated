@@ -182,6 +182,23 @@ def extract_date(text):
     if not isinstance(text, str):
         return None
 
+    # Enhanced regex to catch both MM/DD/YYYY and YYYY/MM/DD formats
+    date_patterns = [
+        (r"\b\d{1,2}[/-]\d{1,2}[/-]\d{4}\b", ["%m/%d/%Y", "%m-%d-%Y"]),  # MM/DD/YYYY or MM-DD-YYYY
+        (r"\b\d{4}[/-]\d{1,2}[/-]\d{1,2}\b", ["%Y/%m/%d", "%Y-%m-%d"]),  # YYYY/MM/DD or YYYY-MM-DD
+    ]
+    
+    for pattern, formats in date_patterns:
+        matches = re.findall(pattern, text)
+        for match in matches:
+            for date_format in formats:
+                try:
+                    dt = datetime.strptime(match, date_format)
+                    return dt.strftime("%Y-%m-%d")
+                except ValueError:
+                    continue
+    
+    # Legacy support for partial dates (keeping existing functionality)
     matches = re.findall(r"\b\d{4}[/-]\d{1,2}(?:[/-]\d{1,2})?\b", text)
     for match in matches:
         try:
