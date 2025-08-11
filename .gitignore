@@ -1,4 +1,4 @@
-# Python
+# Python cache and temporary files
 __pycache__/
 *.py[cod]
 *$py.class
@@ -16,6 +16,12 @@ htmlcov/
 nosetests.xml
 coverage.xml
 pytest.xml
+
+# Python virtual environments
+.venv/
+venv/
+env/
+ENV/
 
 # Unwanted pipeline files (cleanup)
 auto_watcher.py
@@ -38,6 +44,24 @@ test_*.py
 *_test.py
 debug_*.py
 temp_*.py
+clean_log.py
+update_log_manual.py
+test_runner_debug.py
+test_simple.py
+
+# Temporary output and log files
+extraction_output.txt
+extraction_results.txt
+latest_run.log
+*.txt
+!requirements.txt
+!README.txt
+
+# Pipeline cleanup artifacts
+.gitignore-summary.md
+PIPELINE_COMPLETE.md
+*_COMPLETE.md
+*_STATUS.md
 
 # Development/IDE files
 .venv/
@@ -106,3 +130,10 @@ Thumbs.db
 *.bak
 *.orig
 *~
+*.backup
+
+# Any future cleanup files
+cleanup_*.py
+fix_*.py
+manual_*.py
+setup_*.py

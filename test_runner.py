@@ -46,7 +46,7 @@ for root, _, files in os.walk(centralized_folder):
                     else:
                         print(f"[!] No data extracted from: {file}")
                 except Exception as e:
-                    print(f"[X] Failed: {file} → {str(e)}")
+                    print(f"[X] Failed: {file} -> {str(e)}")
 
 # Update log
 update_log(new_log)

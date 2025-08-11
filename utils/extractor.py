@@ -222,21 +222,45 @@ def find_subcategory_column(sheet, categories):
         if not categories:
             return 3
         category_col = categories[0]['column']
-        candidates = [category_col + 1, category_col + 2, 3, 2]
+        candidates = [category_col + 1, category_col + 2, category_col + 3, 3, 2]
+        
+        # Category description patterns to avoid
+        category_patterns = {
+            'M\nMaterial', 'S\nSales Price', 'H\nHeadcount', 
+            'C\nCycle Time(s)\n(in JPH)', 'C\nCycle Times', 'C\nCycle Time(s)',
+            'I\nInvestment', 'T\nTooling', 'Sales Price', 'Material', 
+            'Investment', 'Tooling', 'Cycle Times', 'Headcount'
+        }
+        
         best_col = category_col + 1
-        max_text_cells = 0
+        max_subcategory_score = 0
 
         for col in candidates:
             if col < 1 or col > sheet.max_column:
                 continue
-            text_cells = 0
+            
+            subcategory_score = 0
+            category_description_count = 0
+            
             for row in range(1, min(30, sheet.max_row + 1)):
                 cell = sheet.cell(row=row, column=col).value
-                if cell and isinstance(cell, str) and len(cell.strip()) >= 2:
-                    text_cells += 1
-            if text_cells > max_text_cells:
-                max_text_cells = text_cells
+                if cell and isinstance(cell, str):
+                    cell_str = cell.strip()
+                    if len(cell_str) >= 2:
+                        # Check if this looks like a category description
+                        if cell_str in category_patterns:
+                            category_description_count += 1
+                        else:
+                            # This looks like a potential subcategory
+                            subcategory_score += 1
+            
+            # Prefer columns with more subcategories and fewer category descriptions
+            final_score = subcategory_score - (category_description_count * 2)
+            
+            if final_score > max_subcategory_score:
+                max_subcategory_score = final_score
                 best_col = col
+                
         return best_col
     except:
         return 3
@@ -493,6 +517,30 @@ def extract_smitch_data(sheet, categories, metric_cols, headers, subcategory_col
             if not subcat_cell:
                 continue
             subcat = str(subcat_cell).strip()
+            # Prevent category names from being used as subcategory, especially from category header rows
+            category_names = set(c['name'] for c in categories)
+            full_category_names = {'Sales Price', 'Material', 'Investment', 'Tooling', 'Cycle Times', 'Headcount'}
+            
+            # Also check for multi-line category formats like "S\nSales Price", "M\nMaterial", etc.
+            category_multiline_patterns = {
+                'M\nMaterial', 'S\nSales Price', 'H\nHeadcount', 
+                'C\nCycle Time(s)\n(in JPH)', 'C\nCycle Times', 'C\nCycle Time(s)',
+                'I\nInvestment', 'T\nTooling'
+            }
+            
+            # Check if this row is a category header row (contains any category letter)
+            is_category_header_row = False
+            for cat in categories:
+                if row == cat['row']:  # This is a category header row
+                    # Check if the subcategory matches a category name or multiline pattern
+                    if (subcat in category_names or 
+                        subcat in full_category_names or 
+                        subcat in category_multiline_patterns):
+                        is_category_header_row = True
+                        break
+            
+            if is_category_header_row:
+                continue
 
             for col in metric_cols:
                 val = sheet.cell(row=row, column=col).value
